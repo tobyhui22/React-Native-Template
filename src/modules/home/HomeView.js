@@ -37,7 +37,7 @@ export default function HomeScreen({ isExtended, setIsExtended }) {
           <Text color={colors.introText} size={15}>
             The smartest Way to build your mobile app
           </Text>
-          <Text size={30} bold white style={styles.title}>
+          <Text size={30} bold style={styles.title}>
             React Native Starter
           </Text>
         </View>
@@ -54,8 +54,8 @@ export default function HomeScreen({ isExtended, setIsExtended }) {
           </Text>
           <View style={styles.priceContainer}>
             <View style={{ flexDirection: 'row' }}>
-              <Text white bold size={50} style={styles.price}>
-                {isExtended ? '$499' : '$99'}
+              <Text bold size={50} style={styles.price}>
+                {isExtended ? '$199.95' : '$49.95'}
               </Text>
             </View>
             <TouchableOpacity
@@ -64,7 +64,7 @@ export default function HomeScreen({ isExtended, setIsExtended }) {
                 isExtended ? setIsExtended(false) : setIsExtended(true)
               }
             >
-              <Text white size={14}>
+              <Text style={{ color: colors.primary }} size={14}>
                 {isExtended
                   ? 'Multiple Applications License'
                   : 'Single Application License'}
@@ -110,14 +110,16 @@ const styles = StyleSheet.create({
   titleDescription: {
     color: colors.introText,
     textAlign: 'center',
-    fontFamily: fonts.primaryRegular,
+    fontFamily: fonts.secondaryRegular,
     fontSize: 15,
   },
   title: {
     marginTop: 30,
+    color: colors.primary,
   },
   price: {
     marginBottom: 5,
+    color: colors.primary,
   },
   priceLink: {
     borderBottomWidth: 1,

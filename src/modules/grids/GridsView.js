@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   StyleSheet,
   View,
@@ -8,11 +8,11 @@ import {
   TouchableOpacity,
   Image,
   Dimensions,
-} from "react-native";
-import LinearGradient from "react-native-linear-gradient";
-import { colors, fonts } from "../../styles";
+} from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
+import { colors, fonts } from '../../styles';
 
-import { RadioGroup, GridRow } from "../../components";
+import { RadioGroup, GridRow } from '../../components';
 
 export default class GridsScreen extends React.Component {
   _getRenderItemFunction = () =>
@@ -20,14 +20,14 @@ export default class GridsScreen extends React.Component {
       this.props.tabIndex
     ];
 
-  _openArticle = (article) => {
-    this.props.navigation.navigate("Article", {
+  _openArticle = article => {
+    this.props.navigation.navigate('Article', {
       article,
     });
-  };
+  };  
 
-  renderRowOne = (rowData) => {
-    const cellViews = rowData.item.map((item) => (
+  renderRowOne = rowData => {
+    const cellViews = rowData.item.map(item => (
       <TouchableOpacity key={item.id} onPress={() => this._openArticle(item)}>
         <View style={styles.itemOneContainer}>
           <View style={styles.itemOneImageContainer}>
@@ -100,7 +100,7 @@ export default class GridsScreen extends React.Component {
               <View
                 style={[
                   styles.badge,
-                  item.badge === "NEW" && { backgroundColor: colors.labelOne },
+                  item.badge === 'NEW' && { backgroundColor: colors.labelOne },
                 ]}
               >
                 <Text
@@ -115,7 +115,6 @@ export default class GridsScreen extends React.Component {
           </View>
         </View>
       </View>
-      <View style={styles.itemThreeHr} />
     </TouchableOpacity>
   );
 
@@ -133,15 +132,19 @@ export default class GridsScreen extends React.Component {
             items={this.props.tabs}
             onChange={this.props.setTabIndex}
             underline
+            mainColor={colors.primary}
           />
         </View>
         <FlatList
-          keyExtractor={(item) =>
+          keyExtractor={item =>
             item.id
               ? `${this.props.tabIndex}-${item.id}`
               : `${item[0] && item[0].id}`
           }
-          style={{ backgroundColor: colors.white, paddingHorizontal: 15 }}
+          style={{
+            backgroundColor: colors.background,
+            paddingHorizontal: 15,
+          }}
           data={groupedData}
           renderItem={this._getRenderItemFunction()}
         />
@@ -153,41 +156,55 @@ export default class GridsScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.white,
+    backgroundColor: colors.background,
   },
   tabsContainer: {
-    alignSelf: "stretch",
+    alignSelf: 'stretch',
     marginTop: 30,
   },
   itemOneContainer: {
     flex: 1,
-    width: Dimensions.get("window").width / 2 - 40,
+    width: Dimensions.get('window').width / 2 - 25,
+    borderRadius: 10,
+    backgroundColor: colors.backgroundLight,
+    shadowColor: colors.background,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+    padding: 8,
   },
   itemOneImageContainer: {
     borderRadius: 3,
-    overflow: "hidden",
+    overflow: 'hidden',
   },
   itemOneImage: {
-    height: 200,
-    width: Dimensions.get("window").width / 2 - 40,
+    height: 150,
+    width: Dimensions.get('window').width / 2 - 45,
+    borderRadius: 10,
   },
   itemOneTitle: {
     fontFamily: fonts.primaryRegular,
     fontSize: 15,
+    color: colors.white,
   },
   itemOneSubTitle: {
     fontFamily: fonts.primaryRegular,
+    color: colors.primary,
     fontSize: 13,
-    color: "#B2B2B2",
     marginVertical: 3,
   },
   itemOnePrice: {
     fontFamily: fonts.primaryRegular,
+    color: colors.white,
     fontSize: 15,
   },
   itemOneRow: {
-    flexDirection: "row",
-    justifyContent: "space-around",
+    flexDirection: 'row',
+    justifyContent: 'space-around',
     marginTop: 10,
   },
   itemOneContent: {
@@ -196,13 +213,13 @@ const styles = StyleSheet.create({
   },
   itemTwoContainer: {
     paddingBottom: 10,
-    backgroundColor: "white",
+    backgroundColor: colors.background,
     marginVertical: 5,
   },
   itemTwoContent: {
     padding: 20,
-    position: "relative",
-    marginHorizontal: Platform.OS === "ios" ? -15 : 0,
+    position: 'relative',
+    marginHorizontal: Platform.OS === 'ios' ? -15 : 0,
     height: 150,
   },
   itemTwoTitle: {
@@ -222,14 +239,14 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   itemTwoImage: {
-    position: "absolute",
+    position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
   },
   itemTwoOverlay: {
-    position: "absolute",
+    position: 'absolute',
     left: 0,
     right: 0,
     top: 0,
@@ -237,51 +254,63 @@ const styles = StyleSheet.create({
     opacity: 0.5,
   },
   itemThreeContainer: {
-    backgroundColor: "white",
+    backgroundColor: colors.backgroundLight,
+    padding: 10,
+    borderRadius: 10,
+    shadowColor: colors.background,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+    marginVertical: 8,
   },
   itemThreeSubContainer: {
-    flexDirection: "row",
+    flexDirection: 'row',
     paddingVertical: 10,
   },
   itemThreeImage: {
     height: 100,
     width: 100,
+    borderRadius: 10,
   },
   itemThreeContent: {
     flex: 1,
     paddingLeft: 15,
-    justifyContent: "space-between",
+    justifyContent: 'space-between',
   },
   itemThreeBrand: {
     fontFamily: fonts.primaryRegular,
     fontSize: 14,
-    color: "#617ae1",
+    color: '#617ae1',
   },
   itemThreeTitle: {
     fontFamily: fonts.primaryBold,
     fontSize: 16,
-    color: "#5F5F5F",
+    color: colors.white,
   },
   itemThreeSubtitle: {
     fontFamily: fonts.primaryRegular,
     fontSize: 12,
-    color: "#a4a4a4",
+    color: colors.primary,
   },
   itemThreeMetaContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   itemThreePrice: {
     fontFamily: fonts.primaryRegular,
     fontSize: 15,
-    color: "#5f5f5f",
-    textAlign: "right",
+    color: colors.white,
+    textAlign: 'right',
   },
   itemThreeHr: {
     flex: 1,
     height: 1,
-    backgroundColor: "#e3e3e3",
+    backgroundColor: '#e3e3e3',
     marginRight: -15,
   },
   badge: {

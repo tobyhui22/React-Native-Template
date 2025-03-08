@@ -40,14 +40,16 @@ class CalendarScreen extends React.Component {
         <View>
           <Text
             style={{
-              color: '#48506B',
+              color: colors.primary,
               fontFamily: fonts.primaryRegular,
               marginBottom: 10,
             }}
           >
             {item.name}
           </Text>
-          <Text style={{ color: '#9B9B9B', fontFamily: fonts.primaryRegular }}>
+          <Text
+            style={{ color: colors.white, fontFamily: fonts.primaryRegular }}
+          >
             {item.time}
           </Text>
         </View>
@@ -73,7 +75,9 @@ class CalendarScreen extends React.Component {
           agendaDayTextColor: colors.primaryLight,
           agendaDayNumColor: colors.primaryLight,
           agendaTodayColor: '#4F44B6',
-          backgroundColor: '#F1F1F8',
+          backgroundColor: colors.background,
+          calendarBackground: colors.backgroundLight,
+          dayTextColor: colors.white,
         }}
       />
     );
@@ -83,14 +87,14 @@ class CalendarScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.whiteTwo,
+    backgroundColor: colors.backgroundLight,
     alignItems: 'center',
     justifyContent: 'center',
   },
   item: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: 'white',
+    backgroundColor: colors.backgroundLight,
     borderRadius: 5,
     padding: 10,
     marginRight: 10,
